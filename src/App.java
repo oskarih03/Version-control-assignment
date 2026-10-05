@@ -6,6 +6,8 @@ public class App {
         Scanner in = new Scanner(System.in);
         boolean playing = true;
         int guesses = 0;
+        int nameStart = 0;
+        int nameEnd = 1;
         while (!answer.equals(correctName) && playing) {
             System.out.println("Please, guess my name");
             answer = in.nextLine();
@@ -19,6 +21,12 @@ public class App {
                 String answer2 = in.nextLine();
                 if (answer2.equals("n")) {
                     playing = true;
+                    if (guesses > 1) {
+                        System.out.println("Hint: " + correctName.substring(nameStart, nameEnd));
+                        if (nameEnd < correctName.length()) {
+                            nameEnd += 1;
+                        }
+                    }
                 } else if (answer2.equals("y")) {
                     playing = false;
                     System.out.println("Game over. You guessed " + guesses + " times but didn't get the correct name.");
